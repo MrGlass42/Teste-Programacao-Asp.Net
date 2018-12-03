@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<br />
+<br />
+
+<h2>Pagina Principal</h2>
+<br />
+<br />
+<br />
+
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>Nome</th>
+            <th>Tipo</th>
+            <th>Documento</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        @{
+            var pessoasFisicas = (List<CadastroPessoa.Models.PessoaFisica>)ViewBag.PessoaFisica;
+            var pessoasJuridicas = (List<CadastroPessoa.Models.PessoaJuridica>)ViewBag.PessoaJuridica;
+        }
+        @foreach (var pessoa in pessoasFisicas)
+        {
+        <tr>
+            <th>
+                @pessoa.Nome
+            </th>
+            <th>
+                <strong>Pessoa Fisica</strong>
+            </th>
+            <th>
+                @pessoa.Cpf
+            </th>
+            <th>
+                @Html.ActionLink("Detalhes", "DetalhesFisica", new { id = pessoa.Id })
+            </th>
+            <th>
+                @Html.ActionLink("Editar", "AlterarFisica", new { id = pessoa.Id })
+            </th>
+            <th>
+                @Html.ActionLink("Excluir", "ExcluirFisica", new { id = pessoa.Id })
+            </th>
+        </tr>
+        }
+        @foreach (var pessoa2 in pessoasJuridicas)
+        {
+            <tr>
+                <th>
+                    @pessoa2.NomeFantasia
+                </th>
+                <th>
+                    <strong>Pessoa Juridica</strong>
+                </th>
+                <th>
+                    @pessoa2.Cnpj
+                </th>
+                <th>
+                    @Html.ActionLink("Detalhes", "DetalhesJuridica", new { id = pessoa2.Id })
+                </th>
+                <th>
+                    @Html.ActionLink("Editar", "AlterarJuridica", new { id = pessoa2.Id })
+                </th>
+                <th>
+                    @Html.ActionLink("Excluir", "ExcluirJuridica", new { id = pessoa2.Id })
+                </th>
+            </tr>
+        }
+    </table>
+
+    <br />
+    <br />
+    <br />
+
+    <form action="Cadastrar">
+        <input type="submit" value="Cadastrar" class="btn" />
+    </form>
+    </button>
+
+
+</div>
+

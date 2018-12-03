@@ -1,0 +1,98 @@
+﻿@model CadastroPessoa.Models.PessoaJuridica
+
+@{
+    ViewBag.Title = "DetalhesJuridica";
+}
+
+<h2>DetalhesJuridica</h2>
+
+<div>
+    <h4>PessoaJuridica</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Cnpj)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cnpj)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RazaoSocial)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RazaoSocial)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NomeFantasia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomeFantasia)
+        </dd>
+
+        <dt>
+            <label>CEP</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CEP2)
+        </dd>
+
+        <dt>
+            <label>Logradouro</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Logradouro2)
+        </dd>
+
+        <dt>
+            <label>Numero</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Numero2)
+        </dd>
+
+        <dt>
+            <label>Complemento</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Complemento2)
+        </dd>
+
+        <dt>
+            <label>Bairro</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bairro2)
+        </dd>
+
+        <dt>
+            <label>Cidade</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cidade2)
+        </dd>
+
+        <dt>
+            <label>Unidade Federativa</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Uf2)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "AlterarJuridica", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

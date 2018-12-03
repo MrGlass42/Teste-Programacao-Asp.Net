@@ -1,0 +1,326 @@
+﻿<!DOCTYPE html>
+@{
+    ViewBag.Title = "Cadastrar";
+}
+
+
+<head>
+    <style>
+        .classe
+        {
+            width:60px;
+        }
+
+        body h5{
+            color: red;
+        }
+
+    </style>
+</head>
+<body onload="HideAndShowElement('form1'); HideAndShowElement('form2'); HideAndShowElement('tempa');">
+    <script src="~/Scripts/jquery-3.3.1.min.js"</script>
+    <script src="~/Scripts/jquery.mask.min.js"</script>
+    
+
+    <h2>Cadastrar</h2>
+
+    <br />
+
+    <h4 id="temp">Escolha seu Formulario:</h4>
+
+    <br />
+
+    <button class="btn" onclick="HideAndShowElement('temp'); HideAndShowElement('form1');">
+        Pessoa Fisica
+    </button> &nbsp;&nbsp;
+
+    <button class="btn" onclick="HideAndShowElement('temp'); HideAndShowElement('form2');">
+        Pessoa Juridica
+    </button>
+
+    <br />
+
+
+    <!--FORM PESSOA FISICA-->
+    <div id="form1">
+        <h3>Pessoa Fisica</h3>
+
+        <form action="Cadastrar" method="post">
+
+            <br />
+            <label for="Nome">Nome:</label>
+            <div class="form-group">
+                <input type="text" name="Nome" required />
+            </div>
+            <br />
+
+            <br />
+            <label>Sobre Nome:</label>
+            <div class="form-group">
+                <input type="text" name="SobreNome" required />
+            </div>
+            <br />
+
+            <br />
+            <label>Data Nascimento:</label>
+            <div class="form-group">
+                <br />
+                &nbsp;&nbsp;&nbsp;&nbsp;<label>Dia</label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Mês</label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Ano</label>
+                <br />
+                <input type="text" id="dia" class="classe" required /> &nbsp;
+                <input type="text" id="mes" class="classe" required /> &nbsp;
+                <input type="text" id="ano" class="classe" required />
+
+                <h5 id="tempa">***idade deve ser maior que 19 anos</h5>
+
+                <input id="tempa" type="hidden" name="DataNascimento" />
+            </div>
+            <br />
+
+            <br />
+            <label>Cpf:</label>
+            <div class="form-group">
+                <input id="cpf" type="text" name="Cpf" maxlength="14" onkeypress="this.value = FormataCpf(event)" onpaste="return false;" 
+                       required/>
+            </div>
+            <br />
+
+            <br />
+            <label>CEP:</label>
+            <div class="form-group">
+                <input type="text" name="CEP" required />
+            </div>
+            <br />
+
+            <br />
+            <label>Logradouro:</label>
+            <div class="form-group">
+                <input type="text" name="Logradouro" required />
+            </div>
+            <br />
+
+            <br />
+            <label>Numero:</label>
+            <div class="form-group">
+                <input type="text" name="Numero" required />
+            </div>
+            <br />
+
+            <br />
+            <label>Complemento:</label>
+            <div class="form-group">
+                <input type="text" name="Complemento" />
+            </div>
+            <br />
+
+            <br />
+            <label>Bairro:</label>
+            <div class="form-group">
+                <input type="text" name="Bairro" required />
+            </div>
+            <br />
+
+            <br />
+            <label>Cidade:</label>
+            <div class="form-group">
+                <input type="text" name="Cidade" required />
+            </div>
+            <br />
+
+            <br />
+            <label>Unidade Federativa:</label>
+            <div class="form-group">
+                <input type="text" name="Uf" required />
+            </div>
+            <br />
+            <br />
+            <div class="form-group">
+                <input type="submit" class="btn" value="Cadastrar" name="butao1" onclick="setData();" />
+            </div>
+        </form>
+
+    </div>
+    <!--FIM DO FORM PESSOA FISICA-->
+    <!--FORM PESSOA JURIDICA-->
+    <div id="form2">
+
+        <form action="CadastrarJuridica" method="post" name="form2">
+
+            <h3>Pessoa Juridica</h3>
+
+            <br />
+            <label>Nome Fantasia:</label>
+            <div class="form-group">
+                <input type="text" name="NomeFantasia" required />
+            </div>
+            <br />
+
+            <br />
+            <label>Razão Social:</label>
+            <div class="form-group">
+                <input type="text" name="RazaoSocial" required />
+            </div>
+            <br />
+
+            <br />
+            <label>CNPJ:</label>
+            <div class="form-group">
+                <input id="cnpj" type="text" name="Cnpj" maxlength="18" onkeypress="this.value = FormataCnpj(event)" onpaste="return false;" 
+                       required/>
+            </div>
+            <br />
+
+            <br />
+            <label>Logradouro:</label>
+            <div class="form-group">
+                <input type="text" name="Logradouro2" required />
+            </div>
+            <br />
+
+            <br />
+            <label>Numero:</label>
+            <div class="form-group">
+                <input type="text" name="Numero2" required />
+            </div>
+            <br />
+
+            <br />
+            <label>Complemento:</label>
+            <div class="form-group">
+                <input type="text" name="Complemento2" />
+            </div>
+            <br />
+
+            <br />
+            <label>Bairro:</label>
+            <div class="form-group">
+                <input type="text" name="Bairro2" required />
+            </div>
+            <br />
+
+            <br />
+            <label>Cidade:</label>
+            <div class="form-group">
+                <input type="text" name="Cidade2" required />
+            </div>
+            <br />
+
+            <br />
+            <label>Unidade Federativa:</label>
+            <div class="form-group" required>
+                <select name="Uf2">
+                    <option value="">Selecione</option>
+                    <option value="AC">Acre</option>
+                    <option value="AL">Alagoas</option>
+                    <option value="AP">Amapá</option>
+                    <option value="AM">Amazonas</option>
+                    <option value="BA">Bahia</option>
+                    <option value="CE">Ceará</option>
+                    <option value="DF">Distrito Federal</option>
+                    <option value="ES">Espirito Santo</option>
+                    <option value="GO">Goiás</option>
+                    <option value="MA">Maranhão</option>
+                    <option value="MS">Mato Grosso do Sul</option>
+                    <option value="MT">Mato Grosso</option>
+                    <option value="MG">Minas Gerais</option>
+                    <option value="PA">Pará</option>
+                    <option value="PB">Paraíba</option>
+                    <option value="PR">Paraná</option>
+                    <option value="PE">Pernambuco</option>
+                    <option value="PI">Piauí</option>
+                    <option value="RJ">Rio de Janeiro</option>
+                    <option value="RN">Rio Grande do Norte</option>
+                    <option value="RS">Rio Grande do Sul</option>
+                    <option value="RO">Rondônia</option>
+                    <option value="RR">Roraima</option>
+                    <option value="SC">Santa Catarina</option>
+                    <option value="SP">São Paulo</option>
+                    <option value="SE">Sergipe</option>
+                    <option value="TO">Tocantins</option>
+                </select>
+            </div>
+
+            <br />
+            <label>CEP:</label>
+            <div class="form-group">
+                <input type="text" name="CEP2" required />
+            </div>
+            <br />
+
+            <br />
+            <br />
+            <div class="form-group">
+                <input type="submit" class="btn" value="Cadastrar" name="butao2" />
+            </div>
+        </form>
+    </div>
+
+    <br />
+
+    <a class="btn-link" href="Index">Voltar</a>
+
+
+    <!--FIM DO FORM PESSOA JURIDICA-->
+
+
+
+    <script>
+        function HideAndShowElement(Element) {
+            var x = document.getElementById(Element);
+
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+
+        function FormataCpf(evt) {
+            vr = (navigator.appName == 'Netscape')
+                ? evt.target.value : evt.srcElement.value;
+            if (vr.length == 3)
+                vr = vr + ".";
+            if (vr.length == 7)
+                vr = vr + ".";
+            if (vr.length == 11)
+                vr = vr + "-";
+            return vr;
+
+        }
+
+        function FormataCnpj(evt) {
+            vr = (navigator.appName == 'Netscape')
+                ? evt.target.value : evt.srcElement.value;
+            if (vr.length == 2)
+                vr = vr + ".";
+            if (vr.length == 6)
+                vr = vr + ".";
+            if (vr.length == 10)
+                vr = vr + "/";
+            if (vr.length == 15)
+                vr = vr + "-";
+            return vr;
+        }
+
+
+        function setData() {
+            var ano = document.getElementById('ano').value;
+            var mes = document.getElementById('mes').value;
+            var dia = document.getElementById('dia').value;
+
+
+            if (ano < 1999)
+            {
+                document.getElementById('ano').value = "";
+                HideAndShowElement('tempa');
+            }
+            else
+                document.getElementByName('DataNascimento').value = dia + "/" + mes + "/" + ano;
+        }
+
+
+
+    </script>
+</body>
